@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d6wmc84cjnjk"]
+
+[ext_resource type="Texture2D" uid="uid://bkdvejpp5b6oj" path="res://texture/effect/leaf.png" id="1_eh15q"]
+[ext_resource type="Script" uid="uid://cwx6767r64tj8" path="res://scripts/class/GrassBreakEffect.cs" id="2_6p22r"]
+
+[sub_resource type="Curve" id="Curve_6p22r"]
+_data = [Vector2(0.0067114085, 0.9925416), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3b4ue"]
+curve = SubResource("Curve_6p22r")
+
+[sub_resource type="Curve" id="Curve_5m0yl"]
+_data = [Vector2(0.01006712, 0.0043028593), 0.0, 0.0, 0, 0, Vector2(0.24496643, 0.8247275), 0.0, 0.0, 0, 0, Vector2(0.51342285, 1), -0.048317768, -0.048317768, 0, 0, Vector2(0.8087248, 0.8545611), 0.26459566, 0.26459566, 0, 0, Vector2(0.99664426, 0.0005736351), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_md40i"]
+curve_x = SubResource("Curve_5m0yl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7dtng"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 8, 1)
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 7.0
+directional_velocity_min = -5.000016
+directional_velocity_max = 4.999984
+directional_velocity_curve = SubResource("CurveXYZTexture_md40i")
+gravity = Vector3(0, 5, 0)
+scale_min = 0.39999998
+alpha_curve = SubResource("CurveTexture_3b4ue")
+
+[node name="GrassBreakEffect" type="GPUParticles2D" unique_id=866973442]
+emitting = false
+amount = 10
+texture = ExtResource("1_eh15q")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7dtng")
+script = ExtResource("2_6p22r")

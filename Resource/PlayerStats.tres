@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Stats" format=3 uid="uid://2rimuyebf8sc"]
+
+[ext_resource type="Script" uid="uid://cwjc7u0jglwpw" path="res://scripts/class/Stats.cs" id="1_sm7ll"]
+
+[resource]
+script = ExtResource("1_sm7ll")
+metadata/_custom_type_script = "uid://cwjc7u0jglwpw"

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxf3pkgyowcah"]
+
+[ext_resource type="Script" uid="uid://b686yitwrk6kj" path="res://scripts/pool/GrassBreakPool.cs" id="1_bpo2r"]
+
+[node name="GrassParticlePool" type="Node" unique_id=656648407]
+script = ExtResource("1_bpo2r")

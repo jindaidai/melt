@@ -1,0 +1,26 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Godot 4+
+.godot/
+.import/
+/android/
+
+# C# / .NET
+.mono/
+bin/
+obj/
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.userprefs
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
