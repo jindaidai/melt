@@ -1,8 +1,29 @@
 using Godot;
 using System;
 
-public partial class GrassBreakEffect : GpuParticles2D
+public partial class GrassBreakEffect : GpuParticles2D,IPoolable
 {
+    private GrassBreakPool _pool;
+
+    public void SetPool(GrassBreakPool pool)
+    {
+        _pool = pool;
+    }
+    public void Activate()
+    {
+        Visible = true;
+        ProcessMode = ProcessModeEnum.Inherit;
+
+        Restart();
+        Emitting = true;
+    }
+
+    public void Deactivate()
+    {
+        Emitting = false;
+        Visible = false;
+        ProcessMode = ProcessModeEnum.Disabled;
+    }
     public override void _Ready()
     {
         base._Ready();
@@ -14,6 +35,6 @@ public partial class GrassBreakEffect : GpuParticles2D
 
     public void OnFinished()
     {
-        QueueFree();
+        _pool.ReturnObject(this);
     }
 }

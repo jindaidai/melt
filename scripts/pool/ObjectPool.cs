@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public partial class ObjectPool<T> : Node where T : Node
+public partial class ObjectPool<T> : Node where T : Node,IPoolable
 {
     [Export]
     public PackedScene objectScene;
@@ -22,9 +22,11 @@ public partial class ObjectPool<T> : Node where T : Node
         }
     }
 
-    public T CreateObject()
+    public virtual T CreateObject()
     {
         T obj = objectScene.Instantiate<T>();
+        obj.Deactivate();
+
         AddChild(obj);
         
         return obj;
@@ -34,13 +36,17 @@ public partial class ObjectPool<T> : Node where T : Node
     {
         if(_pool.Count > 0)
         {
-            return _pool.Dequeue();
+            T obj = _pool.Dequeue();
+            obj.Activate();
+
+            return obj;
         }
         return null;
     }
 
     public void ReturnObject(T obj)
     {
+        obj.Deactivate();
         _pool.Enqueue(obj);
     }
 }
