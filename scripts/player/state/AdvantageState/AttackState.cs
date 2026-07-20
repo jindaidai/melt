@@ -18,10 +18,10 @@ public partial class AttackState : State
     public override async void Enter()
     {
         base.Enter();
-        comboCount += 1;
-        player.timers.StartTimer(Player.TimerType.HitContinue);
         player.stats.fallSpeed = 0;
         player.stats.fallAcceleration = 1000;
+        comboCount += 1;
+        player.timers.StartTimer(Player.TimerType.HitContinue);
     }
 
     public override void PhysicUpdate(double delta)
@@ -61,9 +61,16 @@ public partial class AttackState : State
     public override void Transition()
     {   
         base.Transition();
+        bool isSprint = Input.IsActionJustPressed("sprint");
         bool isHit = Input.IsActionPressed("hit");
         bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
         bool isGround = player.IsOnFloor();
+
+        if (isSprint)
+            {
+                EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Sprint);
+            }
+        
         if (!player.IsAnimationPlaying())
         {
             if (isAir)

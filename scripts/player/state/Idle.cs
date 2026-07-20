@@ -8,7 +8,7 @@ public partial class Idle : State
     {
         index = Player.State.Idle;
         speed = 0.0f;
-        acceleration = 500.0f;
+        acceleration = 1000.0f;
     }
 
     public override async void Enter()

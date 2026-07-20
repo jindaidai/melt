@@ -83,11 +83,16 @@ public partial class GroundState : State
     {   
         base.Transition();
         WasOnfloor = player.IsOnFloor();
+        bool isSprint = Input.IsActionJustPressed("sprint");
         bool isHit = Input.IsActionPressed("hit");
         bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
         if (isHit)
         {
             EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Attack);
+        }
+        else if (isSprint)
+        {
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Sprint);
         }
         else if (isAir)
         {

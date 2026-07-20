@@ -1,21 +1,21 @@
 using Godot;
 using System;
 
-public partial class Transform : State
+public partial class Sprint : State
 {
-    Transform()
+    public Sprint()
     {
-        index = Player.State.Transform;
-        speed = 0.0f;
-        acceleration = 1000.0f;
+        index = Player.State.Sprint;
+        speed = 240.0f;
+        acceleration = 600.0f;
     }
 
-    public override async void Enter()
+    public override void Enter()
     {
         base.Enter();
         currentState = this;
-        player.PlayAnimation("transform");  
-        player.stats.fallSpeed = Player.MaxFallSpeed;
+        player.PlayAnimation("sprint");
+        player.stats.fallSpeed = 0;
         player.stats.fallAcceleration = 1000;
     }
 
@@ -28,12 +28,19 @@ public partial class Transform : State
     public override void Transition()
     {   
         base.Transition();
+        bool isSprint = Input.IsActionJustPressed("sprint");
         bool isHit = Input.IsActionPressed("hit");
+        bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
         bool isGround = player.IsOnFloor();
-         bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
+
+
         if (!player.IsAnimationPlaying())
-        { 
-            if (isHit)
+        {
+            if (isAir)
+            {
+                EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Air);
+            }
+            else if (isHit)
             {
                 EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Attack);
             }
@@ -41,20 +48,10 @@ public partial class Transform : State
             {
                 EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Ground);
             }
-            else if (isAir)
-            {
-                EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Air);
-            }
             else
             {
                 EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Keep);
             }
         }
     }
-    public override void Exit()
-    {
-        base.Exit();
-        player.CurrentType = Player.PlayerType.Ice;
-    }
 }
-

@@ -64,6 +64,7 @@ public partial class AirState : State
     public override void Transition()
     {   
         base.Transition();
+        bool isSprint = Input.IsActionJustPressed("sprint");
         bool isHit = Input.IsActionPressed("hit");
         bool isGround = player.IsOnFloor();
         if (isHit)
@@ -74,6 +75,11 @@ public partial class AirState : State
         {
             EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Ground);
         }
+        else if (isSprint)
+        {
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Sprint);
+        }
+        
         else
         {
             EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Keep);
