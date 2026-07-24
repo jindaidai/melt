@@ -34,6 +34,7 @@ public partial class AttackState : State
                 currentState?.Exit();
                 currentState = GetBaseState();
                 currentState?.Enter();
+                GD.Print("进入"+currentState.Name);
             }
         }
         currentState?.PhysicUpdate(delta);

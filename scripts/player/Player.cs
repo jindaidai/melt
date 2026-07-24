@@ -115,7 +115,7 @@ public partial class Player : CharacterBody2D
         if(currentType == PlayerType.Fire)
             return fireAnimationPlayer.IsPlaying();
         if(currentType == PlayerType.Ice)
-            return fireAnimationPlayer.IsPlaying();
+            return iceAnimationPlayer.IsPlaying();
 
         return false;
     }

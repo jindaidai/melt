@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://ca571lu6bvo0o" path="res://scripts/player/state/Idle.cs" id="4_tuyoq"]
 [ext_resource type="Script" uid="uid://cd1s1sv0gdupm" path="res://scripts/player/state/AdvantageState/AirState.cs" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://buygm7c3anrut" path="res://scripts/player/state/Running.cs" id="6_fjrip"]
+[ext_resource type="Texture2D" uid="uid://boyw2rhr00cba" path="res://texture/player/iceHitParticle.png" id="6_l71n6"]
 [ext_resource type="Script" uid="uid://b3qqgllf8ae7i" path="res://scripts/class/HurtBox.cs" id="7_a38lo"]
 [ext_resource type="Script" uid="uid://c007xmv124x54" path="res://scripts/player/state/Jump.cs" id="7_smehm"]
 [ext_resource type="Script" uid="uid://trx1varnlwpc" path="res://scripts/player/state/Fall.cs" id="9_ur7pv"]
@@ -124,6 +125,22 @@ region = Rect2(48, 128, 48, 32)
 atlas = ExtResource("3_qfm1y")
 region = Rect2(96, 128, 48, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj30b"]
+atlas = ExtResource("6_l71n6")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc3p3"]
+atlas = ExtResource("6_l71n6")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hax0n"]
+atlas = ExtResource("6_l71n6")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4otl"]
+atlas = ExtResource("6_l71n6")
+region = Rect2(144, 0, 48, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_bj30b"]
 animations = [{
 "frames": [],
@@ -165,6 +182,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"fire_hit_3",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bj30b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc3p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hax0n")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_t4otl")
+}],
+"loop": false,
+"name": &"ice_hit_1",
 "speed": 10.0
 }]
 
@@ -382,11 +416,11 @@ tracks/5/path = NodePath("Graphics/AttackEffectUp")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.1001),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"PlayFireHit1"
+"args": ["fire_hit_1"],
+"method": &"PlayAnimation"
 }]
 }
 tracks/6/type = "value"
@@ -423,8 +457,8 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"PlayFireHit1"
+"args": ["fire_hit_1"],
+"method": &"PlayAnimation"
 }]
 }
 
@@ -499,11 +533,11 @@ tracks/5/path = NodePath("Graphics/AttackEffectUp")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.1001),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"PlayFireHit2"
+"args": ["fire_hit_2"],
+"method": &"PlayAnimation"
 }]
 }
 tracks/6/type = "value"
@@ -540,8 +574,8 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"PlayFireHit2"
+"args": ["fire_hit_2"],
+"method": &"PlayAnimation"
 }]
 }
 
@@ -616,11 +650,11 @@ tracks/5/path = NodePath("Graphics/AttackEffectUp")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.2001),
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"PlayFireHit3"
+"args": ["fire_hit_3"],
+"method": &"PlayAnimation"
 }]
 }
 tracks/6/type = "value"
@@ -657,8 +691,8 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"PlayFireHit3"
+"args": ["fire_hit_3"],
+"method": &"PlayAnimation"
 }]
 }
 
@@ -1101,6 +1135,207 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_j2b1d"]
+resource_name = "attack1"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 192, 96, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_60mlk")]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/AttackEffectDown")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["ice_hit_1"],
+"method": &"PlayAnimation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_31cv2"]
+resource_name = "attack2"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 192, 96, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_60mlk")]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/AttackEffectDown")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["ice_hit_1"],
+"method": &"PlayAnimation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pf23h"]
+resource_name = "attack3"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 192, 96, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_60mlk")]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/AttackEffectDown")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["ice_hit_1"],
+"method": &"PlayAnimation"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_ke2ow"]
 resource_name = "fall"
 length = 0.4
@@ -1306,6 +1541,9 @@ tracks/3/keys = {
 _data = {
 &"RESET": SubResource("Animation_4r5pv"),
 &"airJump": SubResource("Animation_4ni07"),
+&"attack1": SubResource("Animation_j2b1d"),
+&"attack2": SubResource("Animation_31cv2"),
+&"attack3": SubResource("Animation_pf23h"),
 &"fall": SubResource("Animation_ke2ow"),
 &"idle": SubResource("Animation_fulsm"),
 &"jump": SubResource("Animation_ujl30"),
@@ -1329,18 +1567,18 @@ region_rect = Rect2(0, 0, 128, 32)
 
 [node name="AttackEffectUp" type="AnimatedSprite2D" parent="Graphics" unique_id=760728288]
 visible = false
+top_level = true
 z_index = -1
-position = Vector2(9, 0)
 sprite_frames = SubResource("SpriteFrames_60mlk")
 animation = &"fire_hit_3"
 script = ExtResource("4_fulsm")
 
 [node name="AttackEffectDown" type="AnimatedSprite2D" parent="Graphics" unique_id=1690084954]
 visible = false
+top_level = true
 z_index = 1
-position = Vector2(9, 0)
 sprite_frames = SubResource("SpriteFrames_bj30b")
-animation = &"fire_hit_3"
+animation = &"ice_hit_1"
 script = ExtResource("4_fulsm")
 
 [node name="HitBox" type="Area2D" parent="Graphics" unique_id=1792200275]

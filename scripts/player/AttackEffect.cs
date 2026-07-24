@@ -3,29 +3,25 @@ using System;
 
 public partial class AttackEffect : AnimatedSprite2D
 {
+    Player player;
     public override void _Ready()
     {
         base._Ready();
         Visible = false;
+        player = Owner as Player;
         
         Connect(SignalName.AnimationFinished,new Callable(this,nameof(OnFinished)));
     }
-    public void PlayFireHit1()
-    {
-        Visible = true;
-        Play("fire_hit_1");
-    }
-    public void PlayFireHit2()
-    {
-        Visible = true;
-        Play("fire_hit_2");
-    }
-    public void PlayFireHit3()
-    {
-        Visible = true;
-        Play("fire_hit_3");
-    }
 
+    public void PlayAnimation(string name)
+    {
+        Vector2 offest = player.Direction > 0 ? new Vector2(7,0):new Vector2(-7,0);
+        Scale = new Vector2(player.Direction, 1);
+        GlobalPosition = player.GlobalPosition + offest;
+        Visible = true;
+        Play(name);
+    }
+    
     public void OnFinished()
     {
         Visible = false;

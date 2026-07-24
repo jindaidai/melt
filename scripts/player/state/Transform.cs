@@ -54,7 +54,10 @@ public partial class Transform : State
     public override void Exit()
     {
         base.Exit();
-        player.CurrentType = Player.PlayerType.Ice;
+        if(player.CurrentType == Player.PlayerType.Fire)
+            player.CurrentType = Player.PlayerType.Ice;
+        else if(player.CurrentType == Player.PlayerType.Ice)
+            player.CurrentType = Player.PlayerType.Fire;
     }
 }
 
