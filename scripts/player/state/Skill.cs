@@ -1,11 +1,11 @@
 using Godot;
 using System;
 
-public partial class Sprint : State
+public partial class Skill : State
 {
-    public Sprint()
+    public Skill()
     {
-        index = Player.State.Sprint;
+        index = Player.State.Skill;
         speed = 240.0f;
         acceleration = 600.0f;
     }
@@ -14,7 +14,7 @@ public partial class Sprint : State
     {
         base.Enter();
         currentState = this;
-        player.PlayAnimation("sprint");
+        player.PlayAnimation("skill");
         player.stats.fallSpeed = 0;
         player.stats.fallAcceleration = 1000;
     }
@@ -28,7 +28,6 @@ public partial class Sprint : State
     public override void Transition()
     {   
         base.Transition();
-        bool isSprint = Input.IsActionJustPressed("sprint");
         bool isHit = Input.IsActionPressed("hit");
         bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
         bool isGround = player.IsOnFloor();

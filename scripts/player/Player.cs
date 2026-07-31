@@ -18,7 +18,7 @@ public partial class Player : CharacterBody2D
     public enum State
     {
         Idle,Running,Jump,AirJump,Fall,Attack1,Attack2,Attack3,
-        Ground,Air,Attack,Transform,Sprint,Keep
+        Ground,Air,Attack,Transform,Skill,Keep
     }
     public enum TimerType
     {

@@ -57,7 +57,7 @@ public partial class GroundState : State
 
     }
 
-    public State GetBaseState()
+    public override State GetBaseState()
     {
         float getDirection = Input.GetAxis("move_left","move_right");
         bool isRunning = (getDirection != 0.0f);
@@ -83,16 +83,21 @@ public partial class GroundState : State
     {   
         base.Transition();
         WasOnfloor = player.IsOnFloor();
-        bool isSprint = Input.IsActionJustPressed("sprint");
+        bool isSkill = Input.IsActionJustPressed("skill");
         bool isHit = Input.IsActionPressed("hit");
         bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
-        if (isHit)
+        bool isTransform = Input.IsActionJustPressed("transform");
+        if (isTransform)
+        {
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Transform);
+        }
+        else if (isHit)
         {
             EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Attack);
         }
-        else if (isSprint)
+        else if (isSkill)
         {
-            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Sprint);
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Skill);
         }
         else if (isAir)
         {

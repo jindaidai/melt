@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://lgqy6ye2d13i" path="res://scripts/class/Entity.cs" id="1_l1e1h"]
 [ext_resource type="Script" uid="uid://b3qqgllf8ae7i" path="res://scripts/class/HurtBox.cs" id="1_t6or0"]
 
-[node name="entity" type="CharacterBody2D" unique_id=1683606955]
+[node name="Entity" type="CharacterBody2D" unique_id=1683606955]
 script = ExtResource("1_l1e1h")
 
 [node name="Graphics" type="Node2D" parent="." unique_id=1040920953]

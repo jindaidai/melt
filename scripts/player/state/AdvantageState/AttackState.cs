@@ -42,7 +42,7 @@ public partial class AttackState : State
 
     }
 
-    public State GetBaseState()
+    public override State GetBaseState()
     {
         int hitMode = comboCount % 3;
         switch (hitMode)
@@ -62,15 +62,19 @@ public partial class AttackState : State
     public override void Transition()
     {   
         base.Transition();
-        bool isSprint = Input.IsActionJustPressed("sprint");
+        bool isSkill = Input.IsActionJustPressed("skill");
         bool isHit = Input.IsActionPressed("hit");
         bool isAir = !player.IsOnFloor() && player.timers.IsTimerStopped(Player.TimerType.Coyote);
         bool isGround = player.IsOnFloor();
-
-        if (isSprint)
-            {
-                EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Sprint);
-            }
+        bool isTransform = Input.IsActionJustPressed("transform");
+        if (isTransform)
+        {
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Transform);
+        }
+       else if (isSkill)
+        {
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Skill);
+        }
         
         if (!player.IsAnimationPlaying())
         {

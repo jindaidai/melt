@@ -22,6 +22,10 @@ public partial class State : Node
                 states[state.index] = state;
             }
         }
+        else
+        {
+            currentState = this;
+        }
         player = Owner as Player;
     }
 
@@ -41,4 +45,9 @@ public partial class State : Node
         lastState = null;
     }
     public virtual void Transition(){}
+
+    public virtual State GetBaseState()
+    {
+        return currentState;
+    }
 }

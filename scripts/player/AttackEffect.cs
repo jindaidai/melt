@@ -19,9 +19,16 @@ public partial class AttackEffect : AnimatedSprite2D
         Scale = new Vector2(player.Direction, 1);
         GlobalPosition = player.GlobalPosition + offest;
         Visible = true;
+        
         Play(name);
     }
-    
+
+    public void StopAnimation()
+    {
+        Visible = false;
+        
+        Stop();
+    }
     public void OnFinished()
     {
         Visible = false;

@@ -41,7 +41,7 @@ public partial class AirState : State
 
     }
 
-    public State GetBaseState()
+    public override State GetBaseState()
     {
         bool isAirJump = Input.IsActionJustPressed("jump") && player.currentJumpCount < player.maxJumpCount;
         bool isFall = player.Velocity.Y > 0;
@@ -64,10 +64,15 @@ public partial class AirState : State
     public override void Transition()
     {   
         base.Transition();
-        bool isSprint = Input.IsActionJustPressed("sprint");
+        bool isSkill = Input.IsActionJustPressed("skill");
         bool isHit = Input.IsActionPressed("hit");
         bool isGround = player.IsOnFloor();
-        if (isHit)
+        bool isTransform = Input.IsActionJustPressed("transform");
+        if (isTransform)
+        {
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Transform);
+        }
+        else if (isHit)
         {
             EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Attack);
         }
@@ -75,9 +80,9 @@ public partial class AirState : State
         {
             EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Ground);
         }
-        else if (isSprint)
+        else if (isSkill)
         {
-            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Sprint);
+            EmitSignal(State.SignalName.TransitionRequested,(int)Player.State.Skill);
         }
         
         else

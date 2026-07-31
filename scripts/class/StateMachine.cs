@@ -33,14 +33,7 @@ public partial class StateMachine : Node
 
     public void PhysicUpdate(double delta)
     {
-        if (Input.IsActionJustPressed("transform"))
-        {
-            currentState?.Exit();
-            states[Player.State.Transform].lastState = currentState;
-            states[Player.State.Transform].Enter();
-            currentState = states[Player.State.Transform];
-            GD.Print("进入",currentState.Name);
-        }
+        
     }
     
     public void OnTransitionRequest(int index)
