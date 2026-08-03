@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 public partial class StateMachine : Node
 {
     [Export]
-    State initState;
-    public State currentState;
+    PlayerState initState;
+    public PlayerState currentState;
     Player player;
 
 
-    Dictionary<Player.State,State> states = new Dictionary<Player.State, State>();
+    Dictionary<Player.State,PlayerState> states = new Dictionary<Player.State, PlayerState>();
     public override async void _Ready()
     {
         base._Ready();
         player = Owner as Player;
         await ToSignal(player,Node.SignalName.Ready);
-        foreach(State state in GetChildren())
+        foreach(PlayerState state in GetChildren())
         {
             states[state.index] = state;
             state.Connect(State.SignalName.TransitionRequested,new Callable(this,nameof(OnTransitionRequest)));

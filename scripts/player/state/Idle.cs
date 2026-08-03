@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
-public partial class Idle : State
+public partial class Idle : PlayerState
 {
     public Idle()
     {

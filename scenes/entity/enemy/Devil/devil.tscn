@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://ien7oisdj287"]
+
+[ext_resource type="PackedScene" uid="uid://dihd1llsy8c4k" path="res://scenes/entity/enemy/enemy.tscn" id="1_fkvqi"]
+[ext_resource type="Script" uid="uid://c0eawywuxgbbb" path="res://scenes/entity/enemy/Devil/Devil.cs" id="2_fos68"]
+[ext_resource type="Script" uid="uid://dt1kwttk1b450" path="res://scripts/entity/enemy/devil/AdvantageState/GroundState.cs" id="3_2plko"]
+
+[node name="Devil" unique_id=1683606955 instance=ExtResource("1_fkvqi")]
+script = ExtResource("2_fos68")
+
+[node name="GroundState" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(1638025169) index="0" unique_id=140514754]
+script = ExtResource("3_2plko")
+metadata/_custom_type_script = "uid://be3xfu6bpylm4"

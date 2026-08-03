@@ -1,7 +1,7 @@
 using Godot;
 using System;
-
-public partial class GroundState : State
+namespace Game.PlayerStates;
+public partial class GroundState : PlayerState
 {
     bool wasOnFloor;
     bool WasOnfloor
@@ -57,7 +57,7 @@ public partial class GroundState : State
 
     }
 
-    public override State GetBaseState()
+    public override PlayerState GetBaseState()
     {
         float getDirection = Input.GetAxis("move_left","move_right");
         bool isRunning = (getDirection != 0.0f);

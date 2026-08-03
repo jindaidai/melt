@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dihd1llsy8c4k"]
+
+[ext_resource type="PackedScene" uid="uid://bj6xg5tpgl6c0" path="res://scenes/entity/entity.tscn" id="1_kc5l0"]
+[ext_resource type="Script" uid="uid://lytb4ipsytwm" path="res://scripts/class/HitBox.cs" id="2_x2ulb"]
+[ext_resource type="Script" uid="uid://b0kghch3y0h3n" path="res://scripts/class/StateMachine.cs" id="3_g5hgt"]
+
+[node name="Enemy" unique_id=1683606955 instance=ExtResource("1_kc5l0")]
+
+[node name="HitBox" type="Area2D" parent="Graphics" parent_id_path=PackedInt32Array(1040920953) index="2" unique_id=956819567]
+script = ExtResource("2_x2ulb")
+metadata/_custom_type_script = "uid://lytb4ipsytwm"
+
+[node name="StateMachine" type="Node" parent="." index="2" unique_id=1638025169]
+script = ExtResource("3_g5hgt")
+metadata/_custom_type_script = "uid://b0kghch3y0h3n"

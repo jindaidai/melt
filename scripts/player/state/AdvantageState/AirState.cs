@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AirState : State
+public partial class AirState : PlayerState
 {
     AirState()
     {
@@ -41,7 +41,7 @@ public partial class AirState : State
 
     }
 
-    public override State GetBaseState()
+    public override PlayerState GetBaseState()
     {
         bool isAirJump = Input.IsActionJustPressed("jump") && player.currentJumpCount < player.maxJumpCount;
         bool isFall = player.Velocity.Y > 0;

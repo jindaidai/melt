@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Skill : State
+public partial class Skill : PlayerState
 {
     public Skill()
     {

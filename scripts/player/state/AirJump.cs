@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AirJump : State
+public partial class AirJump : PlayerState
 {
     public AirJump()
     {

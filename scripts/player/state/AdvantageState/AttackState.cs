@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class AttackState : State
+public partial class AttackState : PlayerState
 {
     public int comboCount;
     AttackState()
@@ -42,7 +42,7 @@ public partial class AttackState : State
 
     }
 
-    public override State GetBaseState()
+    public override PlayerState GetBaseState()
     {
         int hitMode = comboCount % 3;
         switch (hitMode)

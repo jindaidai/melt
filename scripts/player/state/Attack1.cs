@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Attack1 : State
+public partial class Attack1 : PlayerState
 {
     Attack1()
     {

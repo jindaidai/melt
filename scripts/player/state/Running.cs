@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Running : State
+public partial class Running : PlayerState
 {
     public Running()
     {
