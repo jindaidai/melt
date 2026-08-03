@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Melt"
 run/main_scene="uid://b87h4c2vw5mh3"
-config/features=PackedStringArray("4.6", "C#", "Mobile")
+config/features=PackedStringArray("4.7", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
