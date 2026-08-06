@@ -507,10 +507,16 @@ tile_map_data = PackedByteArray("AAAFAP//AQAAAAAAAAAJAP//AQAAAAAAAAACAP//AQAAAAA
 tile_set = SubResource("TileSet_r1gwq")
 physics_quadrant_size = 1
 script = ExtResource("4_qo2kn")
-grassBreakPool = NodePath("../Pools/GrassBreakPool")
+grassBreakPool = NodePath("GrassBreakPool")
+
+[node name="GrassBreakPool" type="Node" parent="DestructibleTerrain" unique_id=352813732]
+script = ExtResource("6_qo2kn")
+objectScene = ExtResource("8_ahsbn")
+initialSize = 5
+metadata/_custom_type_script = "uid://b686yitwrk6kj"
 
 [node name="Player" parent="." unique_id=665070322 instance=ExtResource("2_ibn4a")]
-position = Vector2(8, -292)
+position = Vector2(3, -67)
 
 [node name="Sky" type="Parallax2D" parent="." unique_id=1043853496]
 z_index = -100
@@ -544,10 +550,3 @@ repeat_times = 2
 [node name="Sprite2D" type="Sprite2D" parent="Tree" unique_id=2060170414]
 texture = SubResource("AtlasTexture_ahsbn")
 centered = false
-
-[node name="Pools" type="Node" parent="." unique_id=728013083]
-
-[node name="GrassBreakPool" type="Node" parent="Pools" unique_id=352813732]
-script = ExtResource("6_qo2kn")
-objectScene = ExtResource("8_ahsbn")
-metadata/_custom_type_script = "uid://b686yitwrk6kj"

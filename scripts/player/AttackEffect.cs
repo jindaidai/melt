@@ -1,36 +1,16 @@
 using Godot;
 using System;
-
-public partial class AttackEffect : AnimatedSprite2D
+namespace Game.PlayerAttackEffect;
+public partial class AttackEffect : AttackEffectBase
 {
-    Player player;
-    public override void _Ready()
+     private PlayerAttackEffectPool _pool;
+    public void SetPool(PlayerAttackEffectPool pool)
     {
-        base._Ready();
-        Visible = false;
-        player = Owner as Player;
-        
-        Connect(SignalName.AnimationFinished,new Callable(this,nameof(OnFinished)));
+        _pool = pool;
     }
 
-    public void PlayAnimation(string name)
+    public override void OnFinished()
     {
-        Vector2 offest = player.Direction > 0 ? new Vector2(7,0):new Vector2(-7,0);
-        Scale = new Vector2(player.Direction, 1);
-        GlobalPosition = player.GlobalPosition + offest;
-        Visible = true;
-        
-        Play(name);
-    }
-
-    public void StopAnimation()
-    {
-        Visible = false;
-        
-        Stop();
-    }
-    public void OnFinished()
-    {
-        Visible = false;
+        _pool.ReturnObject(this);
     }
 }

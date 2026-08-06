@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://boj0ci0dv8a16"]
+
+[ext_resource type="Script" uid="uid://d2tuxo4xfkblg" path="res://scripts/class/AttackEffectBase.cs" id="1_b2ccl"]
+
+[node name="AttackEffectBase" type="AnimatedSprite2D" unique_id=1849571882]
+script = ExtResource("1_b2ccl")

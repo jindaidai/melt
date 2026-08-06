@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cb8q8mbroxax8"]
+
+[ext_resource type="Texture2D" uid="uid://b8anffap57l8y" path="res://texture/player/hitParticle.png" id="1_ljypx"]
+[ext_resource type="Script" uid="uid://5081f7fctssf" path="res://scripts/player/AttackEffect.cs" id="2_htiva"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4ail"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38lo"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(0, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l71n6"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(48, 64, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2ow"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(0, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(48, 128, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("1_ljypx")
+region = Rect2(96, 128, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3wc1"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4ail")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a38lo")
+}],
+"loop": 0,
+"name": &"fire_hit_1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ni07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l71n6")
+}],
+"loop": 0,
+"name": &"fire_hit_2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2ow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujl30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}],
+"loop": 0,
+"name": &"fire_hit_3",
+"speed": 10.0
+}]
+
+[node name="AttackEffectUp" type="AnimatedSprite2D" unique_id=727753550]
+visible = false
+top_level = true
+z_index = -1
+sprite_frames = SubResource("SpriteFrames_y3wc1")
+animation = &"fire_hit_3"
+script = ExtResource("2_htiva")

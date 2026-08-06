@@ -1,9 +1,11 @@
 using Godot;
 using System;
-
+using Game.PlayerAttackEffect;
 public partial class Player : CharacterBody2D
 {
    [Export] public Stats stats;
+   [Export] public PlayerAttackEffectPool playerAttackEffectPoolUp;
+   [Export] public PlayerAttackEffectPool playerAttackEffectPoolDown;
     public AnimationPlayer fireAnimationPlayer;
     public AnimationPlayer iceAnimationPlayer;
     public Node2D graphics;
@@ -118,6 +120,29 @@ public partial class Player : CharacterBody2D
             return iceAnimationPlayer.IsPlaying();
 
         return false;
+    }
+
+    public void SpawnUpEffect(string name)
+    {
+        Vector2 offest = new Vector2(8,0) * Direction;
+        AttackEffect attackEffectUp = playerAttackEffectPoolUp.GetObject();
+        if(attackEffectUp != null)
+        {
+            attackEffectUp.GlobalPosition = graphics.GlobalPosition + offest;
+            attackEffectUp.Direction = Direction;
+            attackEffectUp.PlayAnimation(name);
+        }
+    }
+    public void SpawnDownEffect(string name)
+    {
+        Vector2 offest = new Vector2(8,0) * Direction;
+        AttackEffect attackEffectDown = playerAttackEffectPoolDown.GetObject();
+        if(attackEffectDown != null)
+        {
+            attackEffectDown.GlobalPosition = graphics.GlobalPosition + offest;
+            attackEffectDown.Direction = Direction;
+            attackEffectDown.PlayAnimation(name);
+        }
     }
     private void SetNodeActive(Node node, bool active)
     {
